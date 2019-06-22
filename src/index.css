@@ -11,19 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 } */
-
-.game {
-  min-width:50%;
-  margin: 0 auto;
-  justify-content:center;
-  background:blue;
-  border: dashed white 2px; 
-  font-family: "Press Start 2P", cursive;
+.board{
   display:flex;
   justify-content: center;
-  align-items:center;
+  margin:0 auto;
+}
+.game {
+  margin: 0;
+  width:450px;
+  justify-content:center;
+  background:blue;
+  border: dashed black 5px; 
+  font-family: "Press Start 2P", cursive;
+  display:flex;
   flex-direction: column;
-  padding:25px;
+  justify-content: center;
+  align-items: center;
+
+  
 }
 h1.game-title{
   color:yellow;
@@ -32,23 +37,41 @@ h1.game-title{
 
 
 img{
-  width:350px;
-  height:250px;
-  border: white 2px dashed;
+  width:250px;
+  height:200px;
+  border: white 5px dashed;
 }
 
 .text{ 
  color:white;
- font-size:1.25em;
+ font-size:.75em;
  padding:8px;
 }
 
 Button,Input{
   font-family: "Press Start 2P", cursive;
-  font-size:1.25em;
+  font-size:1em;
    border:black 3px dashed;
+   margin:10px;
 }
 
 .displayNone{
   display:none;
+}
+
+
+
+.avatar{
+  width:100px;
+  height:100px;
+  margin:10px;
+  border-radius: 15px;
+}
+
+.avatar:hover{
+  animation: blink .3s step-end infinite alternate;
+}
+
+@keyframes blink { 
+  50% {border:6px yellow dashed;} 
 }
