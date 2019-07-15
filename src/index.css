@@ -55,23 +55,40 @@ Button,Input{
    margin:10px;
 }
 
+
 .displayNone{
   display:none;
 }
 
+.avatarsContainer{
+  display:flex;
+
+}
 
 
-.avatar{
+.avatar>img{
   width:100px;
   height:100px;
   margin:10px;
   border-radius: 15px;
 }
 
-.avatar:hover{
+.avatar>img:hover{
   animation: blink .3s step-end infinite alternate;
 }
 
 @keyframes blink { 
   50% {border:6px yellow dashed;} 
+}
+
+.show{
+  border:6px yellow dashed;
+}
+
+.hidden{
+  display:none;
+}
+
+.state{
+  color:white;
 }

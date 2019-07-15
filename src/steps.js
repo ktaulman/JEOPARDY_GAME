@@ -3,12 +3,11 @@ const jsonResponse=[
         "id":0,
         "text":"Welcome to JEOPARDY!",
         "button":"Start",
-        "displayInput":false,
         "displayCharacters":false
     },
     {
         "id":1,
-        "text":"Please enter your name",
+        "text":"Please enter your first name",
         "button":"Press Enter",
     },
     {

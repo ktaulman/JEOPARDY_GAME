@@ -46,7 +46,7 @@ function Input(props) {
  if (props.step===1) {
   return (
    <div>
-    <input onKeyPress={props.onEnter} type="text" />
+    <input onKeyPress={props.onEnter} type="text" className='input'/>
    </div>
   );
  } else {
@@ -55,13 +55,15 @@ function Input(props) {
 }
 function Square(props){
   return(
+      <div className="avatar">
       <img 
         src={props.src} 
         onClick={props.onClick}
         alt=''
         value={props.value}//detail here 
-        className="avatar"
+        className={props.className}
         /> 
+        </div>
   )
 }
 
@@ -72,6 +74,7 @@ class Avatar extends React.Component{
         src={this.props.src[i].picture}
         value={this.props.src[i].gender}
         onClick={()=>this.props.onClick(i)}
+        className={this.props.showHide}
       />
     )
   }
@@ -94,7 +97,7 @@ class Avatar extends React.Component{
 
 function State(props){
   return(
-    <div>
+    <div className="state">
       Counter: {props.step.counter},
       Name: {props.step.name},
       Score: {props.step.score},
@@ -119,7 +122,9 @@ class StartMenu extends React.Component {
     ],
    name: "empty",
    score: 0,
-   player:[]
+   player:[],
+   selected:true,
+   showHide:""
   };
  }
 //METHODS
@@ -129,13 +134,18 @@ handleClick(){
   });
 }
 handleAvatarClick(i){
-  const {player,avatar}=this.state;
-
+  const {player,avatar,showHide}=this.state;
+  console.log(showHide)
+  const css=(this.state.selected)?"show avatar":"hidden avatar";
+  
   this.setState({
-    player:player.push(avatar[i])
+    player:player.concat([avatar[i]]),
+    showHide:showHide.concat(css),
+    selected:!this.state.selected
   })
-  player.className="selected";
-  console.log(this.player.selected)
+  console.log(this.state)
+  
+  
 }
 
 handleEnter(e){
@@ -157,6 +167,7 @@ handleEnter(e){
 //RENDERING
  render() {
   const {data,counter,photos,avatar}=this.state;
+  const css=(this.state.selected)?"show avatar":"hidden avatar";
   
   return (
    <div className="game">
@@ -179,6 +190,7 @@ handleEnter(e){
      <Button
      step={data[counter].button}
      onClick={this.handleClick.bind(this)}
+     showHide={css}
     />
     <div>
       <State step={this.state}/>
