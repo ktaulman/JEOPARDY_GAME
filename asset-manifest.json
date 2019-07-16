@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/JEOPARDY_GAME/static/css/main.5c68cd16.chunk.css",
-    "main.js": "/JEOPARDY_GAME/static/js/main.fac4ecc7.chunk.js",
-    "main.js.map": "/JEOPARDY_GAME/static/js/main.fac4ecc7.chunk.js.map",
+    "main.js": "/JEOPARDY_GAME/static/js/main.df979ee2.chunk.js",
+    "main.js.map": "/JEOPARDY_GAME/static/js/main.df979ee2.chunk.js.map",
     "runtime~main.js": "/JEOPARDY_GAME/static/js/runtime~main.2d630236.js",
     "runtime~main.js.map": "/JEOPARDY_GAME/static/js/runtime~main.2d630236.js.map",
     "static/js/2.137b9f13.chunk.js": "/JEOPARDY_GAME/static/js/2.137b9f13.chunk.js",
     "static/js/2.137b9f13.chunk.js.map": "/JEOPARDY_GAME/static/js/2.137b9f13.chunk.js.map",
     "index.html": "/JEOPARDY_GAME/index.html",
-    "precache-manifest.49e2029fe6c680421549004d6d86e228.js": "/JEOPARDY_GAME/precache-manifest.49e2029fe6c680421549004d6d86e228.js",
+    "precache-manifest.ddb9c8792aa0645b53889564a826eafd.js": "/JEOPARDY_GAME/precache-manifest.ddb9c8792aa0645b53889564a826eafd.js",
     "service-worker.js": "/JEOPARDY_GAME/service-worker.js",
     "static/css/main.5c68cd16.chunk.css.map": "/JEOPARDY_GAME/static/css/main.5c68cd16.chunk.css.map",
     "static/media/Alex_Avatar.png": "/JEOPARDY_GAME/static/media/Alex_Avatar.254e6b1b.png",
