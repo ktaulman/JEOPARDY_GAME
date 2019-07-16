@@ -1,16 +1,26 @@
-/* body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@keyframes avatar_Blink { 
+  50% {border:5px yellow dashed;border-radius:15px} 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-} */
+@keyframes button_Blink{
+  50%{
+    color:lightgrey;
+  }
+}
+@keyframes button_Blink_Hover{
+  50%{
+    color:white;
+  }
+}
+@keyframes fadein{
+  from{
+    opacity:0
+  }
+  to{
+    opactiy:1
+  }
+}
+
 .board{
   display:flex;
   justify-content: center;
@@ -19,26 +29,37 @@ code {
 .game {
   margin: 0;
   width:450px;
+  min-height:600px;
   justify-content:center;
   background:blue;
   border: dashed black 5px; 
   font-family: "Press Start 2P", cursive;
-  display:flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  
+  animation: 2s fadein ease-in;
+  display:block;
+  position:absolute;
 }
-h1.game-title{
+.game-title{
   color:yellow;
+  text-decoration:underline;
+}
+.startMenu_Top{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  min-height:400px;
+}
+.startMenu_Bottom{
+  min-height:150px;
+  display:block;
+  display:flex;
+  flex-direction:column-reverse;
+  align-items:center;
+  justify-content: flex-end;
 }
 
-
-
-img{
-  width:250px;
-  height:200px;
+.window{
+  width:300px;
+  height:250px;
   border: white 5px dashed;
 }
 
@@ -48,46 +69,73 @@ img{
  padding:8px;
 }
 
-Button,Input{
+Button,.button{
+  font-family: "Press Start 2P", cursive;
+  font-size:1em;
+   border:black 5px dashed;
+   margin:10px;
+   background-color:lightgray;
+   animation:button_Blink 1s step-end infinite alternate;
+}
+
+
+Button:hover{
+  color:black;
+  cursor: pointer;
+  border:5px yellow dashed;
+  background-color:lightgray;
+  animation:button_Blink_Hover 1s step-end infinite alternate;
+}
+
+Input{
   font-family: "Press Start 2P", cursive;
   font-size:1em;
    border:black 3px dashed;
    margin:10px;
-}
-
-
+  }
+  
 .displayNone{
   display:none;
 }
 
+
+
 .avatarsContainer{
   display:flex;
-
 }
 
 
-.avatar>img{
+.avatar{
   width:100px;
   height:100px;
   margin:10px;
   border-radius: 15px;
+  border:white 5px dashed;
+  outline:none;
+}
+.avatar:hover{
+  cursor: pointer;
+}
+.selected{
+  animation: avatar_Blink .3s step-end infinite alternate;
 }
 
-.avatar>img:hover{
-  animation: blink .3s step-end infinite alternate;
+.finalized{
+  color:yellow;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction:column;
+}
+.finalizedImage{
+  width:250px;
+  height:250px;
+  margin:10px;
+  border-radius: 15px;
+  border:white 5px dashed;
+  outline:none;
 }
 
-@keyframes blink { 
-  50% {border:6px yellow dashed;} 
-}
-
-.show{
-  border:6px yellow dashed;
-}
-
-.hidden{
-  display:none;
-}
 
 .state{
   color:white;

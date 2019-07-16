@@ -19,7 +19,7 @@ function Window(props) {
   // const path=props.src;
  return (
   <div>
-    <img src={props.src} alt=""/>
+    <img className="window"src={props.src} alt=""/>
   </div>
  );
 }
@@ -53,100 +53,105 @@ function Input(props) {
   return <div> </div>;
  }
 }
-function Square(props){
+function AvatarSquare(props){
   return(
-      <div className="avatar">
-      <img 
+      <div >
+      <input
+        type="image"
+        className={props.avatarClassName}
         src={props.src} 
         onClick={props.onClick}
         alt=''
-        value={props.value}//detail here 
-        className={props.className}
+        value={props.value}
+        key={props.keyValue}
         /> 
         </div>
   )
 }
 
 class Avatar extends React.Component{
-  renderSquare(i){
+  renderAvatar(i){
     return(
-      <Square 
+      <AvatarSquare
         src={this.props.src[i].picture}
-        value={this.props.src[i].gender}
+        value={this.props.src[i].value}
         onClick={()=>this.props.onClick(i)}
-        className={this.props.showHide}
+        key={i}
+        avatarClassName={this.props.src[i].className}
       />
     )
   }
   render(){
     const array=this.props.src;
-    const mapped= array.map((el,i)=>this.renderSquare(i));
-  if(this.props.step===2){
-    return(
-      <div className="avatarsContainer">
-        {mapped}
-      </div>
-    )
-  }else{
-    return <div></div>
+    const mapped= array.map((el,i)=>this.renderAvatar(i));
+    
+    if(this.props.step===2){
+      return(
+        <div className="avatarsContainer">
+          {mapped}
+        </div>
+      )
+    }
+    else{
+      return(
+        <div></div>
+      )
+    }
   }
-
-
-}
 }
 
-function State(props){
-  return(
-    <div className="state">
-      Counter: {props.step.counter},
-      Name: {props.step.name},
-      Score: {props.step.score},
-      Player: {props.step.player.gender}
-    </div>
-  )
-}
 //MAIN START MENU
+//
+//
 class StartMenu extends React.Component {
  ///PROPS
  constructor(props) {
   super(props);
   this.state = {
-    counter:0,
+   counter:0,
    data: [{}],
    photos:[Stage,AlexName,AlexAvatar],
    avatar:[
-      {picture:Man,gender:'man'},
-      {picture:Woman,gender:"woman"},
-      {picture:Robot,gender:"Robot"},
-    
+      {picture:Man,value:'Man',className:'avatar'},
+      {picture:Woman,value:"Woman",className:'avatar'},
+      {picture:Robot,value:"Robot",className:'avatar'},
     ],
-   name: "empty",
+   name: '',
    score: 0,
-   player:[],
-   selected:true,
-   showHide:""
+   avatarSelected:'',
+   finalizeCharacter:false,
   };
  }
 //METHODS
-handleClick(){
-  this.setState({
-    counter:this.state.counter+1
-  });
+handleButtonClick(){
+  if(this.state.counter===0){
+    this.setState({
+      counter:this.state.counter+1,
+    })
+  }
+  if(this.state.counter===1){
+    this.setState({
+      counter:this.state.counter+1,
+    })
+  }
+  if(this.state.counter===2&&this.state.avatarSelected){
+    this.setState({finalizeCharacter:!this.state.finalizeCharacter})
+  }
 }
+
 handleAvatarClick(i){
-  const {player,avatar,showHide}=this.state;
-  console.log(showHide)
-  const css=(this.state.selected)?"show avatar":"hidden avatar";
-  
-  this.setState({
-    player:player.concat([avatar[i]]),
-    showHide:showHide.concat(css),
-    selected:!this.state.selected
-  })
-  console.log(this.state)
-  
-  
-}
+  let avatarCopy=[...this.state.avatar]
+  if(this.state.avatarSelected){
+    return
+  };
+  avatarCopy[i].className="avatar selected"  
+  this.setState({avatarSelected:this.state.avatar[i].value,avatar:avatarCopy})
+  let dataCopy=[...this.state.data];
+  console.log(dataCopy[2]);
+  dataCopy[2].button="Finalize Character";
+  this.setState({data:dataCopy});
+  console.log(this.state.finalizeCharacter);
+ }
 
 handleEnter(e){
   if(e.key==='Enter'){
@@ -167,36 +172,50 @@ handleEnter(e){
 //RENDERING
  render() {
   const {data,counter,photos,avatar}=this.state;
-  const css=(this.state.selected)?"show avatar":"hidden avatar";
-  
-  return (
+  if(!this.state.finalizeCharacter){
+    return (
    <div className="game">
-    <h1 className="game-title">8-bit JEOPARDY</h1>
 
-    <Window src={photos[counter]} />
-
-    <Text step={data[counter].text} />
-
-    <Input
-     step={counter}
-     onEnter={this.handleEnter.bind(this)}
-    />
-
-    <Avatar 
-      step={counter}
-      src={avatar}
-      onClick={(i) => this.handleAvatarClick(i)}
-    />
-     <Button
-     step={data[counter].button}
-     onClick={this.handleClick.bind(this)}
-     showHide={css}
-    />
-    <div>
-      <State step={this.state}/>
+    <div className="startMenu_Top">
+      <h1 className="game-title">8-bit JEOPARDY</h1>
+      <Window className="window" src={photos[counter]} />
+      <Text step={data[counter].text} />
     </div>
-   </div>
-  );
+
+    <div className="startMenu_Bottom">
+      <Input
+      step={counter}
+      onEnter={this.handleEnter.bind(this)}
+      />
+      <Avatar 
+            step={counter}
+            src={avatar}
+            onClick={(i) => this.handleAvatarClick(i)}
+      />
+          
+      <Button
+          step={data[counter].button}
+          onClick={this.handleButtonClick.bind(this)}
+      />
+    </div>
+    </div>
+  )
+  }
+  else{
+    let avatars=this.state.avatar;
+    let filteredAvatar=avatars.filter(el=>el.value===`${this.state.avatarSelected}`);
+    console.log(filteredAvatar);
+    return(
+    <div className="game finalized">
+      
+      <h1>You Selected...</h1>
+      <p>Name: {this.state.name}</p>
+      <img className="finalizedImage" src={filteredAvatar[0].picture }alt=''/>
+      <button className="button">Continue</button>
+      
+    </div>
+    )
+  }
  }
 }
 

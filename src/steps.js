@@ -2,8 +2,7 @@ const jsonResponse=[
     {
         "id":0,
         "text":"Welcome to JEOPARDY!",
-        "button":"Start",
-        "displayCharacters":false
+        "button":"Click to Start",
     },
     {
         "id":1,
@@ -14,6 +13,7 @@ const jsonResponse=[
         "id":2,
         "text":"Please choose a character",
         "button":"Choose Character",
+        'class':''
     }
 ]
 export default jsonResponse;
