@@ -7,7 +7,7 @@ const jsonResponse=[
     {
         "id":1,
         "text":"Please enter your first name",
-        "button":"Press Enter",
+        "button":"Choose Name",
     },
     {
         "id":2,

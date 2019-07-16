@@ -46,7 +46,7 @@ function Input(props) {
  if (props.step===1) {
   return (
    <div>
-    <input onKeyPress={props.onEnter} type="text" className='input'/>
+    <input onChange={props.onChange} onKeyPress={props.onEnter} type="text" className='input'/>
    </div>
   );
  } else {
@@ -165,6 +165,9 @@ handleEnter(e){
     });
   }
 }
+handleInputChange(e){
+  this.setState({name:e.target.value})
+}
 
 //MOUNTING
   componentWillMount(){
@@ -193,6 +196,7 @@ handleEnter(e){
       <Input
       step={counter}
       onEnter={this.handleEnter.bind(this)}
+      onChange={this.handleInputChange.bind(this)}
       />
       <Avatar 
             step={counter}
