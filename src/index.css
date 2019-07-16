@@ -21,18 +21,14 @@
   }
 }
 
-.board{
-  display:flex;
-  justify-content: center;
-  margin:0 auto;
-}
+
 .game {
   margin: 0;
-  width:450px;
+  width:375px;
   min-height:600px;
   justify-content:center;
   background:blue;
-  border: dashed black 5px; 
+  border: solid black 5px; 
   font-family: "Press Start 2P", cursive;
   animation: 2s fadein ease-in;
   display:block;

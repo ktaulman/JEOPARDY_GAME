@@ -230,7 +230,7 @@ handleEnter(e){
 class Board extends React.Component {
   render(){
     return(
-      <div className='board'>
+      <div className='main_startMenu'>
         <StartMenu/>
       </div>
     )
@@ -241,7 +241,7 @@ class App extends React.Component {
  render() {
   return (
    <div>
-    <Board />
+    <Board className="board"/>
    </div>
   );
  }
