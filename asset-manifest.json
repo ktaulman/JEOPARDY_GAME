@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/static/css/main.81e26fda.chunk.css",
+    "main.js": "/static/js/main.831b9e48.chunk.js",
+    "main.js.map": "/static/js/main.831b9e48.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.137b9f13.chunk.js": "/static/js/2.137b9f13.chunk.js",
+    "static/js/2.137b9f13.chunk.js.map": "/static/js/2.137b9f13.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.318585fe6de63454a4c442c713c4d3bd.js": "/precache-manifest.318585fe6de63454a4c442c713c4d3bd.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.81e26fda.chunk.css.map": "/static/css/main.81e26fda.chunk.css.map",
+    "static/media/Alex_Avatar.png": "/static/media/Alex_Avatar.254e6b1b.png",
+    "static/media/Alex_Name.png": "/static/media/Alex_Name.4ebe406d.png",
+    "static/media/Stage.png": "/static/media/Stage.1042b791.png",
+    "static/media/man.png": "/static/media/man.061441c5.png",
+    "static/media/robot.png": "/static/media/robot.92ff2427.png",
+    "static/media/woman.png": "/static/media/woman.b68cb98a.png"
+  }
+}
