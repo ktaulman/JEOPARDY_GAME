@@ -41,6 +41,8 @@
 .game-title{
   color:yellow;
   text-decoration:underline;
+  text-align:center;
+  font-size:20px;
 }
 .startMenu_Top{
   display:flex;
