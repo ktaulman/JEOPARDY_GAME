@@ -138,6 +138,9 @@ handleButtonClick(){
     this.setState({finalizeCharacter:!this.state.finalizeCharacter})
   }
 }
+handleReload(){
+  window.location.reload();
+}
 
 handleAvatarClick(i){
   let avatarCopy=[...this.state.avatar]
@@ -165,13 +168,17 @@ handleEnter(e){
 
 //MOUNTING
   componentWillMount(){
-    console.log(jsonResponse)
+    console.log(jsonResponse);
     this.setState({data:jsonResponse});
    }
 
 //RENDERING
  render() {
   const {data,counter,photos,avatar}=this.state;
+  if(!this.state.data){
+    return(<div>Loading...</div>)
+  }
+  
   if(!this.state.finalizeCharacter){
     return (
    <div className="game">
@@ -211,7 +218,7 @@ handleEnter(e){
       <h1>You Selected...</h1>
       <p>Name: {this.state.name}</p>
       <img className="finalizedImage" src={filteredAvatar[0].picture }alt=''/>
-      <button className="button">Continue</button>
+      <button className="button" onClick={this.handleReload.bind(this)}>Reload</button>
       
     </div>
     )
