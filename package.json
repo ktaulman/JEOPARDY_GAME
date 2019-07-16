@@ -2,6 +2,7 @@
   "name": "game_jeopardy",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://ktaulman.github.io/JEOPARDY_GAME",
   "dependencies": {
     "gh-pages": "^2.0.1",
     "react": "^16.8.6",
