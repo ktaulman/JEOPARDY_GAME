@@ -1,5 +1,5 @@
 @keyframes avatar_Blink { 
-  50% {border:5px yellow dashed;border-radius:15px} 
+  50% {border:5px yellow dashed;} 
 }
 
 @keyframes button_Blink{
@@ -27,12 +27,12 @@
   width:375px;
   min-height:600px;
   justify-content:center;
-  background:blue;
   border: solid black 5px; 
   font-family: "Press Start 2P", cursive;
   animation: 2s fadein ease-in;
   display:block;
   position:absolute;
+  background:blue;
 }
 .game-title{
   color:yellow;
@@ -107,7 +107,6 @@ Input{
   width:100px;
   height:100px;
   margin:10px;
-  border-radius: 15px;
   border:white 5px dashed;
   outline:none;
 }
