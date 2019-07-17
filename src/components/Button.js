@@ -1,5 +1,5 @@
 import React from "react";
-export function Button({onClick,step}) {
+export const Button=({onClick,step})=>{
   return (
   <div>
     <button 

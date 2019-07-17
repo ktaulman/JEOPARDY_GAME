@@ -14,6 +14,11 @@ const jsonResponse=[
         "text":"Please choose a character",
         "button":"Choose Character",
         'class':''
+    }, {
+        "id":3,
+        "text":"",
+        "button":"Start Game",
+        'class':''
     }
 ]
 export default jsonResponse;

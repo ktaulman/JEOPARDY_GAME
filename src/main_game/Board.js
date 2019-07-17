@@ -1,9 +1,15 @@
 import React from "react";
-import { StartMenu } from "./StartMenu";
-export class Board extends React.Component {
-  render() {
-    return (<div className='main_startMenu'>
-      <StartMenu />
-    </div>);
-  }
+
+export const Board=(props)=>{
+  return(
+   
+    <div className='game' id="game_board"> 
+        {/* <ScoreBoard 
+
+          />
+        <GameBoard 
+
+        /> */}
+    </div>
+  )
 }

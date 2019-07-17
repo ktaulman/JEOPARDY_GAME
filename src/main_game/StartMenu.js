@@ -98,12 +98,23 @@ export class StartMenu extends React.Component {
 
         <div className="startMenu_Top">
           <h1 className="game-title">8-bit JEOPARDY</h1>
-          <TrebekWindow className="window" src={photos[counter]} />
-          <Text step={data[counter].text} />
+
+          <TrebekWindow 
+            className="window" 
+            src={photos[counter]} 
+          />
+          <Text 
+            step={data[counter].text}  
+          />
         </div>
 
         <div className="startMenu_Bottom">
-          <Input step={counter} onEnter={this.handleEnter.bind(this)} onChange={this.handleInputChange.bind(this)} />
+          <Input 
+            step={counter} 
+            onEnter={this.handleEnter.bind(this)} 
+            onChange={this.handleInputChange.bind(this)} 
+
+          />
           <AvatarContainer step={counter} src={avatar} onClick={(i) => this.handleAvatarClick(i)} />
           <Button step={data[counter].button} onClick={this.handleButtonClick.bind(this)} />
         </div>

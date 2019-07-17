@@ -1,16 +1,123 @@
 import React from "react";
+
+//Photos
+import Stage from '../photos/Stage.png';
+import AlexName from '../photos/Alex_Name.png';
+import AlexAvatar from '../photos/Alex_Avatar.png';
+import Man from '../photos/man.png';
+import Woman from '../photos/woman.png';
+import Robot from '../photos/robot.png';
+import jsonResponse from "./steps";
+
+
+//Components
+
 import { Board } from "./Board";
-import { StartMenu } from './StartMenu';
+import { StartMenuCopy } from './StartMenuCopy';
+
 export class App extends React.Component {
-    constructor() {
-        super();
-        this.state = {};
+    constructor(props) {
+        super(props);
+        this.state = {
+          counter: 0,
+          data: [{}],
+          gameBoardData:[{}],
+          photos: [Stage, AlexName, AlexAvatar],
+          avatar: [
+            { picture: Man, value: 'Man', className: 'avatar' },
+            { picture: Woman, value: "Woman", className: 'avatar' },
+            { picture: Robot, value: "Robot", className: 'avatar' },
+          ],
+          name: 'default',
+          score: 0,
+          avatarSelected: 'Robot',
+          finalizeCharacter: false,
+          startGame:false,
+        };
+      }
+
+
+
+//METHODS
+  handleButtonClick() {
+    let {counter,avatarSelected,finalizeCharacter,name,data,startGame}=this.state;
+    if (counter === 0) {
+      this.setState({
+        counter: counter + 1,
+      });
     }
+    else if (counter === 1) {
+      if(!name){
+            let dataCopy=[...data];
+            let text=document.getElementById('text')
+            text.classList.add('yellow_text');
+
+            dataCopy[1].text="Please enter a name";
+            this.setState({data:dataCopy})
+        }
+        else{
+            this.setState({
+                counter:counter + 1,
+            });
+        }
+    }
+    else if (counter === 2 && avatarSelected) {
+      this.setState({ finalizeCharacter: !finalizeCharacter,counter:counter+1 });
+    }
+    else if(counter===3){
+        this.setState({startGame:!startGame})
+    }
+  }
+
+  handleAvatarClick(i) {
+    let avatarCopy = [...this.state.avatar];
+    if (this.state.avatarSelected) {return;};
+    avatarCopy[i].className = "avatar selected";
+    console.log(avatarCopy[i]);
+    this.setState({ avatarSelected: this.state.avatar[i].value, avatar: avatarCopy });
+    let dataCopy = [...this.state.data];
+    console.log(dataCopy[2]);
+    dataCopy[2].button = "Finalize Character";
+    this.setState({ data: dataCopy });
+    }
+  handleEnter(e) {
+    if (e.key === 'Enter') {
+      console.log('Enter');
+      this.setState({
+        name: e.target.value,
+        counter: this.state.counter + 1
+      });
+    }
+  }
+  handleInputChange(e) {
+    this.setState({ name: e.target.value });
+  }
+  //MOUNTING
+  componentWillMount() {
+    console.log(jsonResponse);
+    this.setState({ data: jsonResponse });
+  }
+  //RENDERING
     render() {
-        return (
-        <div>
-            <StartMenu />
-            <Board className="board" />
-        </div>);
+        let state=this.state;
+        if(state.startGame){
+            return (
+            <div className='game'>
+                <StartMenuCopy 
+                    state={state} 
+                    handleEnter={this.handleEnter.bind(this)}
+                    handleInputChange={this.handleInputChange.bind(this)}
+                    handleAvatarClick={(i)=>this.handleAvatarClick(i)}
+                    handleButtonClick={this.handleButtonClick.bind(this)}
+                />
+            </div>
+        
+        )
+        }
+        else{
+            return(
+                <Board /> 
+            )
+        }
     }
 }

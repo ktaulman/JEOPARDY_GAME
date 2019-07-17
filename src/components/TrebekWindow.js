@@ -1,11 +1,11 @@
 import React from "react";
 
 export const TrebekWindow=({ src })=>{
-
-  return (<div>
+   return (<div>
     <img 
-    className="window" 
-    src={src} 
-    alt="" />
-  </div>);
+      className="window" 
+      src={src} 
+      alt="" 
+    />
+    </div>);
 }

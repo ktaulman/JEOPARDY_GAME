@@ -63,8 +63,12 @@
 
 .text{ 
  color:white;
- font-size:.75em;
+ font-size:1.0em;
  padding:8px;
+ text-align:center;
+}
+.yellow_text{
+  color:yellow;
 }
 
 Button,.button{
