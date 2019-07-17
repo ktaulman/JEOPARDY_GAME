@@ -7,7 +7,9 @@ import AlexAvatar from '../photos/Alex_Avatar.png';
 import Man from '../photos/man.png';
 import Woman from '../photos/woman.png';
 import Robot from '../photos/robot.png';
+//Mock JSON 
 import jsonResponse from "./steps";
+import gameQuestions from './gameQuestions';
 
 
 //Components
@@ -21,7 +23,7 @@ export class App extends React.Component {
         this.state = {
           counter: 0,
           data: [{}],
-          gameBoardData:[{}],
+          gameQuestions:[{}],
           photos: [Stage, AlexName, AlexAvatar],
           avatar: [
             { picture: Man, value: 'Man', className: 'avatar' },
@@ -94,7 +96,7 @@ export class App extends React.Component {
   }
   //MOUNTING
   componentWillMount() {
-    console.log(jsonResponse);
+    this.setState({gameQuestions:gameQuestions});
     this.setState({ data: jsonResponse });
   }
   //RENDERING
@@ -116,7 +118,9 @@ export class App extends React.Component {
         }
         else{
             return(
-                <Board /> 
+                <Board 
+                    state={state}
+                />
             )
         }
     }
