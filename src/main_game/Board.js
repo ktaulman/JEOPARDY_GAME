@@ -5,7 +5,9 @@ export const Board=({state})=>{
   return(
    
     <div className='game' id="game_board"> 
-        <div>PLAYER DATA</div>
+        <div>
+          <img src={state.}"/>
+        </div>
         <div id="question_board">
           <div>Athletes</div>
           <div>$100</div>
