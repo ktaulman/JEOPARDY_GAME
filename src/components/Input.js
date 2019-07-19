@@ -17,3 +17,5 @@ export const Input=({step,onChange,onEnter})=>{
     return <div> </div>;
   }
 }
+
+export default Input;

@@ -10,6 +10,7 @@ import Robot from '../photos/robot.png';
 //Mock JSON 
 import jsonResponse from "./steps";
 import gameQuestions from './gameQuestions';
+import Input from '../components/Input'
 
 
 //Components
@@ -30,9 +31,9 @@ export class App extends React.Component {
             { picture: Woman, value: "Woman", className: 'avatar' },
             { picture: Robot, value: "Robot", className: 'avatar' },
           ],
-          name: 'default',
+          name: 'Kevin',
           score: 0,
-          avatarSelected: 'Robot',
+          avatarSelected: 'Man',
           finalizeCharacter: false,
           startGame:false,
         };
@@ -67,7 +68,8 @@ export class App extends React.Component {
       this.setState({ finalizeCharacter: !finalizeCharacter,counter:counter+1 });
     }
     else if(counter===3){
-        this.setState({startGame:!startGame})
+        this.setState({startGame:!startGame});
+        this.setState({})
     }
   }
 
@@ -94,6 +96,11 @@ export class App extends React.Component {
   handleInputChange(e) {
     this.setState({ name: e.target.value });
   }
+
+  handleQuestionBoxClick(){
+    console.log("question box clicked")
+  }
+
   //MOUNTING
   componentWillMount() {
     this.setState({gameQuestions:gameQuestions});
@@ -116,12 +123,14 @@ export class App extends React.Component {
         
         )
         }
-        else{
+      else{
             return(
-                <Board 
+               <Board 
                     state={state}
+                    handleQuestionBoxClick={this.handleQuestionBoxClick}
                 />
             )
         }
+        
     }
 }
