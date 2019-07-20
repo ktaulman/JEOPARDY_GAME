@@ -10,7 +10,6 @@ import Robot from '../photos/robot.png';
 //Mock JSON 
 import jsonResponse from "./steps";
 import gameQuestions from './gameQuestions';
-import Input from '../components/Input'
 
 
 //Components
@@ -22,9 +21,11 @@ export class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+          //GAME DATA STATES
           counter: 0,
           data: [{}],
           gameQuestions:[{}],
+          //START MENU STATEES
           photos: [Stage, AlexName, AlexAvatar],
           avatar: [
             { picture: Man, value: 'Man', className: 'avatar' },
@@ -32,16 +33,21 @@ export class App extends React.Component {
             { picture: Robot, value: "Robot", className: 'avatar' },
           ],
           name: 'Kevin',
-          score: 0,
           avatarSelected: 'Man',
           finalizeCharacter: false,
           startGame:false,
+          //GAME BOARD STATES 
+          score: 0,
+          clickedQuestionToggle:false,
+          clickedQuestion:[],
         };
       }
 
 
 
 //METHODS
+
+//FOR THE START MENU **********///
   handleButtonClick() {
     let {counter,avatarSelected,finalizeCharacter,name,data,startGame}=this.state;
     if (counter === 0) {
@@ -96,9 +102,14 @@ export class App extends React.Component {
   handleInputChange(e) {
     this.setState({ name: e.target.value });
   }
-
-  handleQuestionBoxClick(){
-    console.log("question box clicked")
+//FOR THE GAME BOARD**************//
+  handleQuestionClick(x,y){
+    console.log(this.state.gameQuestions[x].questions[y]);
+    console.log(this.state.clickedQuestionToggle)
+    this.setState({
+      clickedQuestion:this.state.gameQuestions[x].questions[y],
+      clickedQuestionToggle:!this.state.clickedQuestionToggle,
+    })
   }
 
   //MOUNTING
@@ -110,24 +121,26 @@ export class App extends React.Component {
     render() {
         let state=this.state;
         if(state.startGame){
-            return (
+          return (
             <div className='game'>
                 <StartMenuCopy 
                     state={state} 
                     handleEnter={this.handleEnter.bind(this)}
                     handleInputChange={this.handleInputChange.bind(this)}
+
                     handleAvatarClick={(i)=>this.handleAvatarClick(i)}
+
                     handleButtonClick={this.handleButtonClick.bind(this)}
                 />
             </div>
         
         )
-        }
+      }
       else{
             return(
                <Board 
                     state={state}
-                    handleQuestionBoxClick={this.handleQuestionBoxClick}
+                    onClick={(x,y)=>this.handleQuestionClick.bind(this,x,y)}
                 />
             )
         }

@@ -1,14 +1,12 @@
 import React from "react";
 
-export const AvatarContainer=({src,onClick,step})=>{
+export const AvatarContainer=({src,handleAvatarClick,step})=>{
   function renderAvatar(i){
       return(
         <div>
           <input 
-            type="image" 
-            className={src[i].className} 
-            src={src[i].picture} 
-            onClick={()=>onClick(i)} 
+            type="image" className={src[i].className} src={src[i].picture} 
+            onClick={()=>handleAvatarClick(i)} 
             alt='' 
             value={src[i].value} 
             key={i} 

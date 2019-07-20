@@ -33,11 +33,34 @@ export const StartMenuCopy=(props)=>{
             onChange={props.handleInputChange} 
           />
           
+
+
+
+
+
+
+
+
+
+
           <AvatarContainer 
             step={counter} 
             src={avatar} 
-            onClick={props.handleAvatarClick}    
+            handleAvatarClick={props.handleAvatarClick}    
           />
+
+
+
+
+
+
+
+
+
+
+
+
+
 
           <Button 
             step={data[counter].button} 
