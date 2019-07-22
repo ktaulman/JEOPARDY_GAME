@@ -9,22 +9,31 @@ export const Column = (props) => {
             {props.category}
         </div>
         <div 
+            
             className="question_board_question"
             onClick={props.onClick(props.column,0)}
         >
-           ${props.questions[0].points}
+           <p id={`question_${props.column}_0`}>
+           {props.questions[0].points}</p>
+           
         </div>
         <div 
+            id={`question_${props.column}_1`}
             className="question_board_question" 
             onClick={props.onClick(props.column,1)}
         >
-            ${props.questions[1].points}
+             <p id={`question_${props.column}_1`}>
+           {props.questions[1].points}</p>
+
         </div>
         <div 
             className="question_board_question"
             onClick={props.onClick(props.column,2)}
         >
-            ${props.questions[2].points}
+            
+            <p id={`question_${props.column}_2`}>
+           {props.questions[2].points}</p>
+
         </div>
     </div>);
 };

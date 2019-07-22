@@ -220,3 +220,57 @@ Input{
 no-underline{
   text-decoration:none;
 }
+
+.clickedQuestion{
+  color:white;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  height:600px;
+  padding:5px;
+  word-wrap: break-word;
+}
+.question_container{
+  width:350px;
+  height:500px;
+  align-self:center;
+  justify-self: center;
+}
+.h1{
+  position:relative;
+  word-wrap: break-word;
+  font-size:28px;
+  border: solid black 5px;
+  padding:8px;
+}
+
+.question_submit_form{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  flex-direction:column;
+}
+
+.h2_question_card{
+  text-decoration:underline;
+  color:gold;
+}
+#question_result{
+  color:white;
+  line-height:30px;
+}
+
+.answer_container{
+  border:gold 5px dashed;
+  width:350px;
+  height:100px;
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.answered{
+  animation:none;
+  background:blue;
+  color:blue;
+}

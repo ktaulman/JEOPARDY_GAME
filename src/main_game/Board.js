@@ -2,9 +2,10 @@ import React from "react";
 import Man from '../photos/man_scoreboard.png';
 import Woman from '../photos/woman_scoreboard.png';
 import Robot from '../photos/robot_scoreboard.png';
-import { Column } from './Column';
+import { Column } from '../components/Column';
+import {QuestionCard} from '../components/QuestionCard'
 
-export const Board=({state,onClick})=>{
+export const Board=({state,onClick,handleAnswerInput,handleQuestionSubmit})=>{
   //Destructuring Props 
   const {avatar,avatarSelected,score,name,gameQuestions} = state;
   let pixelatedPhotos=[Man,Woman,Robot];
@@ -25,8 +26,7 @@ let filteredAvatar = avatar.filter(el => el.value === `${avatarSelected}`);
           />
     )
 })  
-  
-
+//Check to see if all questions are answered
   //RENDERING
   if(!state.clickedQuestionToggle){
   return(
@@ -56,7 +56,11 @@ let filteredAvatar = avatar.filter(el => el.value === `${avatarSelected}`);
 }else{
   return(
   <div className="game"> 
-  
+    <QuestionCard 
+      card={state.clickedQuestion}
+      onChange={handleAnswerInput}
+      onSubmit={handleQuestionSubmit}
+    />
   </div>)
 }
 }

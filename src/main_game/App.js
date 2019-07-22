@@ -32,14 +32,17 @@ export class App extends React.Component {
             { picture: Woman, value: "Woman", className: 'avatar' },
             { picture: Robot, value: "Robot", className: 'avatar' },
           ],
-          name: 'Kevin',
-          avatarSelected: 'Man',
+          name: '',
+          avatarSelected: '',
           finalizeCharacter: false,
           startGame:false,
           //GAME BOARD STATES 
           score: 0,
+          clickedCoordinates:[],
           clickedQuestionToggle:false,
-          clickedQuestion:[],
+          clickedQuestion:{},
+          clickedAnswer:'',
+          answeredCounter:0,
         };
       }
 
@@ -103,14 +106,75 @@ export class App extends React.Component {
     this.setState({ name: e.target.value });
   }
 //FOR THE GAME BOARD**************//
+
   handleQuestionClick(x,y){
-    console.log(this.state.gameQuestions[x].questions[y]);
-    console.log(this.state.clickedQuestionToggle)
+    console.log(this.state.clickedCoordinates);
+    if(this.state.gameQuestions[x].questions[y].answered==='yes') return;
+    
+    let questionsCopy=this.state.gameQuestions.slice();
+    questionsCopy[x].questions[y].answered="yes";
+    
     this.setState({
+      clickedCoordinates:[x,y],
       clickedQuestion:this.state.gameQuestions[x].questions[y],
       clickedQuestionToggle:!this.state.clickedQuestionToggle,
+      gameQuestions:questionsCopy,
     })
+    document.getElementById(`question_${x}_${y}`).innerHTML='';
   }
+  handleAnswerInput(e){
+    this.setState({clickedAnswer:e.target.value})
+  }
+  handleReloadClick(){
+    window.location.reload();
+  }
+  handleQuestionSubmit(){
+    if(!this.state.clickedAnswer){console.log('no answer')}
+    else{
+      console.log("there's input")
+      //logic for finding answer
+      let userAnswer=this.state.clickedAnswer.toLowerCase().replace(' ','');
+      let correctAnswer=this.state.clickedQuestion.answer.toLowerCase().replace(' ','');
+      
+      let displayCorrect=()=>{
+        document.getElementById('question_result').innerHTML='CORRECT!';
+        let scoreCopy=Number(String(this.state.score).slice());
+        let total=scoreCopy+Number(this.state.clickedQuestion.points.replace('$',''));
+        this.setState({score:total})
+
+        let x=this.state.clickedCoordinates[0];
+        let y=this.state.clickedCoordinates[1];
+        let questionsCopy=this.state.gameQuestions;
+        questionsCopy[x].questions[y].points='';
+        this.setState({gameQuestions:questionsCopy})
+
+      }
+      let displayIncorrect=()=>{
+        document.getElementById('question_result').innerHTML=`Incorrect the answer was ${this.state.clickedQuestion.answer.toUpperCase()}`;
+        let scoreCopy=Number(String(this.state.score).slice());
+        let total=scoreCopy-Number(this.state.clickedQuestion.points.replace('$',''));
+        this.setState({score:total})
+
+        let x=this.state.clickedCoordinates[0];
+        let y=this.state.clickedCoordinates[1];
+        let questionsCopy=this.state.gameQuestions;
+        questionsCopy[x].questions[y].points='';
+        this.setState({gameQuestions:questionsCopy})
+      }
+      userAnswer===correctAnswer?displayCorrect():displayIncorrect();
+      
+      let exitCard=()=>{
+        this.setState({
+          clickedQuestionToggle:!this.state.clickedQuestionToggle,
+          answeredCounter:this.state.answeredCounter+1,
+        })
+      }
+
+      setTimeout(exitCard,2000)
+    }
+    
+  }
+ 
 
   //MOUNTING
   componentWillMount() {
@@ -119,12 +183,32 @@ export class App extends React.Component {
   }
   //RENDERING
     render() {
-        let state=this.state;
-        if(state.startGame){
+
+        //End Game Screen
+        if(this.state.answeredCounter===9){
+            let avatarsArray = this.state.avatar;
+            let filteredAvatar = avatarsArray.filter(el => el.value === `${this.state.avatarSelected}`);
+            console.log(filteredAvatar);
+            return (
+              <div className="game finalized">
+                <h1>Congrats!!!</h1>
+                <p>{this.state.name}</p>
+                <img 
+                    className="finalizedImage" 
+                    src={filteredAvatar[0].picture} 
+                    alt='' 
+                />
+                <p>Your score was:${this.state.score}</p>
+                 <button onClick={this.handleReloadClick}>Restart</button>
+              </div>
+            )
+        }
+
+      if(!this.state.startGame){
           return (
             <div className='game'>
                 <StartMenuCopy 
-                    state={state} 
+                    state={this.state} 
                     handleEnter={this.handleEnter.bind(this)}
                     handleInputChange={this.handleInputChange.bind(this)}
 
@@ -137,10 +221,15 @@ export class App extends React.Component {
         )
       }
       else{
-            return(
+          return(
                <Board 
-                    state={state}
+                    state={this.state}
+                    
                     onClick={(x,y)=>this.handleQuestionClick.bind(this,x,y)}
+                    
+                    handleAnswerInput={(e)=>this.handleAnswerInput(e)}
+
+                    handleQuestionSubmit={this.handleQuestionSubmit.bind(this)}
                 />
             )
         }
